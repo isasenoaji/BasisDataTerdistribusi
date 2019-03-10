@@ -7,7 +7,7 @@ Instalasi dalam tutorial ini penulis menggunakan :
  3. VM Virtual Box
 
 ## Daftar Isi
-1. [Setting Up Machine menggunakan Vagrant](#1.-setting-up-machine-menggunakan-vagrant)
+1. [Setting Up Machine menggunakan Vagrant](#1-setting-up-machine-menggunakan-vagrant)
 2. [Instalasi MySQL Cluster Multi Node](#instalasi-mysql-cluster-multi-node) 
    - Instalasi NDB Manager
    - Instalasi Data Node
