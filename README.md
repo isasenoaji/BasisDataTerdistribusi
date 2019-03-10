@@ -195,4 +195,4 @@ select @@hostname
 
 maka bila sukses akan tampil seperti gambar ini :
 
-<img src="/Screenshot/testing.png>
+<img src="/Screenshot/testing.png">
