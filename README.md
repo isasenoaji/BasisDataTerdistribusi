@@ -7,10 +7,10 @@ Instalasi dalam tutorial ini penulis menggunakan :
  3. VM Virtual Box
 
 ## Daftar Isi
-1. Setting Up Machine menggunakan Vagrant
-2. Instalasi MySQL Cluster Multi Node 
+1. [Setting Up Machine menggunakan Vagrant](#setting-up)
+2. [Instalasi MySQL Cluster Multi Node](#instalasi-mysql-cluster) 
    - Instalasi NDB Manager
    - Instalasi Data Node
    - Instalasi Service Node
-3. Instalasi ProxySQL
-4. Testing menggunakan Aplikasi MySQL Workbench	
+3. [Instalasi ProxySQL](#instalasi-proxysql)
+4. [Testing menggunakan Aplikasi](#testing-menggunakan-aplikasi)
