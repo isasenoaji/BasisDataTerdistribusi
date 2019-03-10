@@ -30,7 +30,11 @@ Arsitektur dan pembagian IP :
 | 6. | Data Node 2 | data2 | 192.168.31.102 |
 | 7. | Data Node 3 | data3 |192.168.31.103 |
 
-Konfigurasi terdapat pada file bernama ```Vagrant```. Jalankan command pada terminal
+Konfigurasi terdapat pada file bernama ```Vagrant```. Ganti direktori menjadi sesuai tempat penyimpanan file konfigurasi ```Vagrant``` dengan command 
+
+```$ cd (direktori)```
+
+Untuk meng-aktifkan server, jalankan command pada terminal
 
 ```$ vagrant up```
 
@@ -41,8 +45,154 @@ Setelah proses pembuatan (bila belum membuat sebelumnya)/menyalakan server (bila
 untuk menjalankan server guna instalasi/mengaktifkan layanan pada masing-masing server.
 
 ## 2. Instalasi MySQL Cluster Multi Node
+### Instalasi NDB Manager
+
 
 ## 3. Instalasi ProxySQL
+Download instalasi ProxySQL, disini penulis menggunakan ProxySQL Ubuntu 16.04 Versi 1.4.4
+
+Jalankan command pada server Proxy untuk mendownload
+
+```
+$ cd /tmp
+$ curl -OL https://github.com/sysown/proxysql/releases/download/v1.4.4/proxysql_1.4.4-ubuntu16_amd64.deb
+```
+
+Install package yang sudah didownload dengan command
+
+```
+$ sudo dpkg -i proxysql_*
+```
+
+Untuk menghubungkan ```Service API``` dengan ProxySQL maka diperlukan instalasi mysql-client. jalankan command 
+
+```
+$ sudo apt-get update
+$ sudo apt-get install mysql-client
+```
+Jika sudah, lanjut dengan meng-aktifkan layanan ProxySQL dengan command
+
+```
+$ sudo systemctl start proxysql
+```
+
+untuk cek apakah sudah berhasil berjalan gunakan command 
+
+```
+$ sudo systemctl status proxysql
+```
+
+jika berhasil, maka akan tampil seperti berikut :
+
+<img src="/Screenshot/proxy running sukses.png">
+
+### Setting password Admin ProxySQL, secara default awal password nya adalah admin.
+
+```
+$ mysql -u admin -p -h 127.0.0.1 -P 6032 --prompt='ProxySQLAdmin> '
+```
+ganti password(jika ingin mengganti password untuk admin ProxySQL dengan command
+
+```
+ProxySQLAdmin > UPDATE global_variables SET variable_value='admin:passwordbaru' WHERE variable_name='admin-admin_credentials';
+ProxySQLAdmin > LOAD ADMIN VARIABLES TO RUNTIME;
+ProxySQLAdmin > SAVE ADMIN VARIABLES TO DISK;
+```
+
+
+### Konfigurasi Monitoring di Service API
+
+Download file sql addition yang sudah disiapkan dengan command pada kedua service API
+
+```
+$ curl -OL https://gist.github.com/lefred/77ddbde301c72535381ae7af9f968322/raw/5e40b03333a3c148b78aa348fd2cd5b5dbb36e4d/addition_to_sys.sql
+```
+lanjut command untuk memasukan konfigurasi dalam file sql kedalam service
+
+```
+$ mysql -u root -p < addition_to_sys.sql
+```
+
+login ke MySQL
+
+```
+$ mysql -u root -p
+```
+
+buat user bernama monitor
+
+```
+CREATE USER 'monitor'@'%' IDENTIFIED BY 'monitorpassword';
+GRANT SELECT on sys.* to 'monitor'@'%';
+FLUSH PRIVILEGES;
+```
+**note : lakukan step diatas pada semua service API**
+
+
+### Konfigurasi monitoring pada ProxySQL
+
+```
+ProxySQLAdmin > UPDATE global_variables SET variable_value='monitor' WHERE variable_name='mysql-monitor_username';
+ProxySQLAdmin > LOAD MYSQL VARIABLES TO RUNTIME;
+ProxySQLAdmin > SAVE MYSQL VARIABLES TO DISK;
+```
+
+
+Daftarkan service API kedalam ProxySQL
+
+```
+ProxySQLAdmin > INSERT INTO mysql_group_replication_hostgroups (writer_hostgroup, backup_writer_hostgroup, reader_hostgroup, offline_hostgroup, active, max_writers, writer_is_also_reader, max_transactions_behind) VALUES (2, 4, 3, 1, 1, 3, 1, 100);
+ProxySQLAdmin > INSERT INTO mysql_servers(hostgroup_id, hostname, port) VALUES (2, '192.168.31.104', 3306);
+ProxySQLAdmin > INSERT INTO mysql_servers(hostgroup_id, hostname, port) VALUES (2, '192.168.31.105', 3306);
+
+ProxySQLAdmin > LOAD MYSQL SERVERS TO RUNTIME;
+ProxySQLAdmin > SAVE MYSQL SERVERS TO DISK;
+```
+
+jalankan command berikut untuk mengecek apakah Service API sudah terhubung dengan ProxySQL
+
+```
+ProxySQLAdmin > SELECT hostgroup_id, hostname, status FROM runtime_mysql_servers;
+```
+
+Pastikan hasil output seperti gambar ini :
+
+<img src="/Screenshot/sukses link proxy-service.png">
+
+
+### Buat User MySQL pada Service API untuk dapat diakses melalui ProxySQL
+login pada server service API
+
+jalankan command 
+
+```
+service1 > mysql -u root -p
+mysql > CREATE USER 'mysqlcluster'@'%' IDENTIFIED BY 'vagrant';
+mysql > GRANT ALL PRIVILEGES on clustertest.* to 'mysqlcluster'@'%';
+mysql > FLUSH PRIVILEGES;
+mysql > exit;
+```
+
+### Buat User MySQL pada ProxySQL agar dapat diakses melalui aplikasi 
+Pada ProxySQL, jalankan command :
+
+```
+ProxySQLAdmin > INSERT INTO mysql_users(username, password, default_hostgroup) VALUES ('mysqlcluster', 'vagrant', 2);
+ProxySQLAdmin > LOAD MYSQL USERS TO RUNTIME;
+ProxySQLAdmin > SAVE MYSQL USERS TO DISK;
+```
+
+
 
 ## 3. Testing Menggunakan Aplikasi
 Dalam testing kali ini, penulis menggunakan aplikasi MySQL Workbench untuk memastikan apakah proxy dapat diakses.
+Buat koneksi baru dengan input IP Address 192.168.31.106 (alamat ProxySQL) dengan user mysqlcluster dan password vagrant.
+bila sudah, lakukan ujicoba cek host name dengan command :
+
+```
+select @@hostname
+```
+
+maka bila sukses akan tampil seperti gambar ini :
+
+<img src="/Screenshot/testing.png>
