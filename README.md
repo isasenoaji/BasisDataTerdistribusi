@@ -8,11 +8,18 @@ Instalasi dalam tutorial ini penulis menggunakan :
 
 ## Daftar Isi
 1. [Setting Up Machine menggunakan Vagrant](#1-setting-up-machine-menggunakan-vagrant)
-2. [Instalasi MySQL Cluster Multi Node](#instalasi-mysql-cluster-multi-node) 
+2. [Instalasi MySQL Cluster Multi Node](#2-instalasi-mysql-cluster-multi-node) 
    - Instalasi NDB Manager
    - Instalasi Data Node
    - Instalasi Service Node
-3. [Instalasi ProxySQL](#instalasi-proxysql)
-4. [Testing menggunakan Aplikasi](#testing-menggunakan-aplikasi)
+3. [Instalasi ProxySQL](#3-instalasi-proxysql)
+4. [Testing menggunakan Aplikasi](#4-testing-menggunakan-aplikasi)
 
 ## 1. Setting Up Machine Menggunakan Vagrant
+
+## 2. Instalasi MySQL Cluster Multi Node
+
+## 3. Instalasi ProxySQL
+
+## 3. Testing Menggunakan Aplikasi
+Dalam testing kali ini, penulis menggunakan aplikasi MySQL Workbench untuk memastikan apakah proxy dapat diakses.
