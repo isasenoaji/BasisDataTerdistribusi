@@ -11,7 +11,7 @@ Instalasi dalam tutorial ini penulis menggunakan :
 2. [Instalasi MySQL Cluster Multi Node](#2-instalasi-mysql-cluster-multi-node) 
    - [Instalasi NDB Manager](#--instalasi-ndb-manager)
    - [Instalasi Data Node](#--instalasi-data-node)
-   - [Instalasi Service Node](--instalasi-service-node)
+   - [Instalasi Service Node](#--instalasi-service-node)
 3. [Instalasi ProxySQL](#3-instalasi-proxysql)
 4. [Testing menggunakan Aplikasi](#4-testing-menggunakan-aplikasi)
 
@@ -242,9 +242,138 @@ Jika berhasil maka akan keluar hasil seperti ini
 
 <img src="/Screenshot/data1 sukses running.png">
 
+**Lakukan step diatas pada setiap data node**
+
 ### - Instalasi Service Node
+Login pada service node dan donwload packagenya
 
+```
+$ wget https://dev.mysql.com/get/Downloads/MySQL-Cluster-7.6/mysql-cluster_7.6.6-1ubuntu16.04_amd64.deb-bundle.tar
+```
 
+buat direktori dan pindah ke direktori tsb ;
+
+```
+$ mkdir install
+$ cd install
+```
+
+extract package hasil download
+
+```
+$ tar -xvf mysql-cluster_7.6.6-1ubuntu16.04_amd64.deb-bundle.tar -C
+```
+
+update dan instal dependency
+
+```
+$ sudo apt update
+$ sudo apt install libaio1 libmecab2
+```
+
+Instal masing-masing package yang sudah diextract
+
+```
+$ sudo dpkg -i mysql-common_7.6.6-1ubuntu16.04_amd64.deb
+$ sudo dpkg -i mysql-cluster-community-client_7.6.6-1ubuntu16.04_amd64.deb
+$ sudo dpkg -i mysql-client_7.6.6-1ubuntu16.04_amd64.deb
+$ sudo dpkg -i mysql-cluster-community-server_7.6.6-1ubuntu16.04_amd64.deb
+```
+
+Saat instalasi mysql cluster comunity server, maka akan muncul prompt untuk memasukan password root. masukan password vagrant
+
+Instal mysql server
+
+```
+$ sudo dpkg -i mysql-server_7.6.6-1ubuntu16.04_amd64.deb
+```
+
+tambahkan kode berikut pada konfigurasi di /etc/mysql/my.cnf
+
+```
+. . .
+[mysqld]
+# Options for mysqld process:
+ndbcluster                      # run NDB storage engine
+bind-address=192.168.31.104     # based on this IP service
+
+[mysql_cluster]
+# Options for NDB Cluster processes:
+ndb-connectstring=192.168.31.100  # location of management server
+```
+
+restart mysql server 
+
+```
+$ sudo systemctl restart mysql
+```
+
+enable kan service mysql server 
+
+```
+$ sudo systemctl enable mysql
+```
+
+**Lakukan step diatas pada semua service**
+
+Verifikasi service node
+
+jalankan command
+
+```
+$ mysql -u root -p 
+```
+
+akan tampil seperti ini :
+
+```
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 3
+Server version: 5.7.22-ndb-7.6.6 MySQL Cluster Community Server (GPL)
+
+Copyright (c) 2000, 2018, Oracle and/or its affiliates. All rights reserved.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql>
+
+```
+
+cek dengan command :
+
+```
+mysql > SHOW ENGINE NDB STATUS \G
+```
+
+jika instalasi berhasil maka akan tampil seperti dibawah ini :
+
+pada service 1:
+
+<img src="/Screenshot/service1 sukses running.png">
+
+pada service 2:
+
+<img src="/Screenshot/service2 sukses running.png">
+
+masuk ke server NDB Manager, jalankan command :
+
+```
+$ ndb_mgm
+```
+
+lalu command 
+
+```
+ndb_mgm > SHOW
+```
+
+jika cluster manager (NDB Manager), service serta data node terhubung sukses akan tampil seperti dibawah
+
+<img src="/Screenshot/ndb_mgm struktur.png">
 
 ## 3. Instalasi ProxySQL
 Download instalasi ProxySQL, disini penulis menggunakan ProxySQL Ubuntu 16.04 Versi 1.4.4
