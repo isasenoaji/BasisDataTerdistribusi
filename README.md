@@ -145,6 +145,103 @@ $ sudo ufw allow from 192.168.31.106
 
 ### - Instalasi Data Node
 
+Login pada Data Node dan download package untuk cluster node dengan commad :
+
+```
+$ wget https://dev.mysql.com/get/Downloads/MySQL-Cluster-7.6/mysql-cluster-community-data-node_7.6.6-1ubuntu16.04_amd64.deb
+```
+
+Instal dependency
+
+```
+$ sudo apt update
+$ sudo apt install libclass-methodmaker-perl
+```
+
+Instal package data node 
+
+```
+$ sudo dpkg -i mysql-cluster-community-data-node_7.6.6-1ubuntu16.04_amd64.deb
+```
+
+Edit konfig pada /etc/my.cnf sesuai dengan yang sudah disiapkan penulis di config/data
+
+```
+[mysql_cluster]
+# Options for NDB Cluster processes:
+ndb-connectstring=192.168.31.100  # location of cluster manager
+```
+
+Buat direktori untuk penyimpanan
+
+```
+$ sudo mkdir -p /usr/local/mysql/data
+$ sudo ndbd  #status data node
+```
+
+Allow koneksi dari server-server 
+
+```
+$ sudo ufw allow from 192.168.31.100
+$ sudo ufw allow from 192.168.31.101
+$ sudo ufw allow from 192.168.31.102
+$ sudo ufw allow from 192.168.31.103
+$ sudo ufw allow from 192.168.31.104
+$ sudo ufw allow from 192.168.31.105
+$ sudo ufw allow from 192.168.31.106
+```
+
+Sebelum membuat service data node, kill dahulu 
+
+```
+$ sudo pkill -f ndbd
+```
+
+edit konfig pada /etc/systemd/system/ndbd.service
+
+```
+$ sudo nano /etc/systemd/system/ndbd.service
+```
+
+Paste kode berikut :
+
+```
+[Unit]
+Description=MySQL NDB Data Node Daemon
+After=network.target auditd.service
+
+[Service]
+Type=forking
+ExecStart=/usr/sbin/ndbd
+ExecReload=/bin/kill -HUP $MAINPID
+KillMode=process
+Restart=on-failure
+
+[Install]
+WantedBy=multi-user.target
+```
+
+Save dan exit, lalu jalankan daemon mode dan enable kan service yang sudah dibuat dengan command
+
+```
+$ sudo systemctl daemon-reload
+$ sudo systemctl enable ndbd
+```
+
+jalankan service dengan command 
+
+```
+$ sudo systemctl start ndbd
+```
+cek status service dengan command 
+
+```
+$ sudo systemctl status ndbd
+```
+Jika berhasil maka akan keluar hasil seperti ini 
+
+<img src="/Screenshot/data1 sukses running.png">
+
 ### - Instalasi Service Node (API)
 
 
