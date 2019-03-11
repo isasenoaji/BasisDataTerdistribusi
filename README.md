@@ -10,8 +10,8 @@ Instalasi dalam tutorial ini penulis menggunakan :
 1. [Setting Up Machine menggunakan Vagrant](#1-setting-up-machine-menggunakan-vagrant)
 2. [Instalasi MySQL Cluster Multi Node](#2-instalasi-mysql-cluster-multi-node) 
    - [Instalasi NDB Manager](#--instalasi-ndb-manager)
-   - Instalasi Data Node
-   - Instalasi Service Node
+   - [Instalasi Data Node](#--instalasi-data-node)
+   - [Instalasi Service Node](--instalasi-service-node)
 3. [Instalasi ProxySQL](#3-instalasi-proxysql)
 4. [Testing menggunakan Aplikasi](#4-testing-menggunakan-aplikasi)
 
