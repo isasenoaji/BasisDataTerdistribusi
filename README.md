@@ -9,7 +9,7 @@ Instalasi dalam tutorial ini penulis menggunakan :
 ## Daftar Isi
 1. [Setting Up Machine menggunakan Vagrant](#1-setting-up-machine-menggunakan-vagrant)
 2. [Instalasi MySQL Cluster Multi Node](#2-instalasi-mysql-cluster-multi-node) 
-   - Instalasi NDB Manager
+   - [Instalasi NDB Manager](#--instalasi-ndb-manager)
    - Instalasi Data Node
    - Instalasi Service Node
 3. [Instalasi ProxySQL](#3-instalasi-proxysql)
@@ -242,7 +242,7 @@ Jika berhasil maka akan keluar hasil seperti ini
 
 <img src="/Screenshot/data1 sukses running.png">
 
-### - Instalasi Service Node (API)
+### - Instalasi Service Node
 
 
 
