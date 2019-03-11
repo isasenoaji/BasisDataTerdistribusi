@@ -511,7 +511,7 @@ ProxySQLAdmin > SAVE MYSQL USERS TO DISK;
 
 
 
-## 3. Testing Menggunakan Aplikasi
+## 4. Testing Menggunakan Aplikasi
 Dalam testing kali ini, penulis menggunakan aplikasi MySQL Workbench untuk memastikan apakah proxy dapat diakses.
 Buat koneksi baru dengan input IP Address 192.168.31.106 (alamat ProxySQL) dengan user mysqlcluster dan password vagrant.
 bila sudah, lakukan ujicoba cek host name dengan command :
@@ -523,3 +523,8 @@ select @@hostname
 maka bila sukses akan tampil seperti gambar ini :
 
 <img src="/Screenshot/testing.png">
+
+jika diputus pada salah satu service pun maka akan segera mengganti ke service yang lain
+
+<img src="/Screenshot/testing2.png">
+
