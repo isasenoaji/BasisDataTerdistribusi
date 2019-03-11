@@ -45,7 +45,108 @@ Setelah proses pembuatan (bila belum membuat sebelumnya)/menyalakan server (bila
 untuk menjalankan server guna instalasi/mengaktifkan layanan pada masing-masing server.
 
 ## 2. Instalasi MySQL Cluster Multi Node
-### Instalasi NDB Manager
+###  - Instalasi NDB Manager
+Login pada server NDB Manager, download package NDB Manager dengan command 
+
+```
+$ wget https://dev.mysql.com/get/Downloads/MySQL-Cluster-7.6/mysql-cluster-community-management-server_7.6.6-1ubuntu16.04_amd64.deb
+```
+
+Instal hasil download nya dengan command 
+
+```
+$ sudo dpkg -i mysql-cluster-community-management-server_7.6.6-1ubuntu16.04_amd64.deb
+```
+
+Buat direktori /var/lib/mysql-cluster untuk menyimpan konfigurasi NDB Managernya 
+
+```
+$ sudo mkdir /var/lib/mysql-cluster
+```
+
+Edit file pada direktori yang baru dibuat tadi dengan perintah
+
+```
+sudo nano /var/lib/mysql-cluster/config.ini
+```
+
+Copy isi file pada direktori yang sudah penulis siapkan di /config/manager
+
+<img src="/Screenshot/struktur config.ini.png">
+
+jika sudah pastikan benar IP yang dimasukan, jalankan ndb_mgmd dengan command 
+
+```
+$ sudo ndb_mgmd -f /var/lib/mysql-cluster/config.ini
+```
+
+sebelum menjalankan service manager, kill dahulu service yang sedang berjalan dengan command
+
+```
+$ sudo pkill -f ndb_mgmd
+```
+
+edit file konfigurasi management ndb dengan command :
+
+```
+$ sudo nano /etc/systemd/system/ndb_mgmd.service
+```
+
+Copy paste kan konfig ini :
+
+```
+[Unit]
+Description=MySQL NDB Cluster Management Server
+After=network.target auditd.service
+
+[Service]
+Type=forking
+ExecStart=/usr/sbin/ndb_mgmd -f /var/lib/mysql-cluster/config.ini
+ExecReload=/bin/kill -HUP $MAINPID
+KillMode=process
+Restart=on-failure
+
+[Install]
+WantedBy=multi-user.target
+```
+Save dan exit, lalu jalankan daemon mode dan enable kan service yang sudah dibuat dengan command
+
+```
+$ sudo systemctl daemon-reload
+$ sudo systemctl enable ndb_mgmd
+```
+
+jalankan service dengan command 
+
+```
+$ sudo systemctl start ndb_mgmd
+```
+cek status service dengan command 
+
+```
+$ sudo systemctl status ndb_mgmd
+```
+
+Jika berhasil maka akan keluar hasil seperti ini 
+
+<img src="/Screenshot/manager sukses running.png">
+
+jangan lupa untuk allow koneksi dari client dan service dengan command :
+
+```
+$ sudo ufw allow from 192.168.31.100
+$ sudo ufw allow from 192.168.31.101
+$ sudo ufw allow from 192.168.31.102
+$ sudo ufw allow from 192.168.31.103
+$ sudo ufw allow from 192.168.31.104
+$ sudo ufw allow from 192.168.31.105
+$ sudo ufw allow from 192.168.31.106
+```
+
+### - Instalasi Data Node
+
+### - Instalasi Service Node (API)
+
 
 
 ## 3. Instalasi ProxySQL
