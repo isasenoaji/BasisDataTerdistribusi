@@ -206,7 +206,7 @@ WHERE
 
 Outpun lokal penulis :
 
-<img src="/MySQL Partitioning/Screenshot 2/select benchmark after.png">
+<img src="/MySQL Partitioning/Screenshot 2/select benchmark before.png">
 
 Mungkin hasil perbedaan running time tidak jauh berbeda, namun jika kita hapus index pada ```measure_time``` maka akan nampak jelas seperti berikut :
 
@@ -222,7 +222,7 @@ DROP INDEX `measure_timestamp` ;
 <img src="/MySQL Partitioning/Screenshot 2/remove index benchmark.png">
 berikut perbedaannya :
 
-<img src="/MySQL Partitioning/Screenshot 2/select benchmark before.png">
+<img src="/MySQL Partitioning/Screenshot 2/select benchmark after.png">
 
 ## Delete dan Running Time
 
