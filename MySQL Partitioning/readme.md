@@ -165,3 +165,11 @@ Cek dengan query :
 explain select * from rc1_key;
 ```
 
+
+# 2. Typical Use Case : Time Series Data
+
+## Explain
+
+## Query dan Running Time
+
+## Delete dan Running Time
