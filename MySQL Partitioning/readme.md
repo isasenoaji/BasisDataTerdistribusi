@@ -55,7 +55,7 @@ explain select * from rc1_range;
 ```
 
 
-<img src="/MySQL Partitioning/Screenshot 2/range explain.png"> 
+<img src="/MySQL Partitioning/Screenshot 2/explain range.png"> 
 
 ## List Partition
 
