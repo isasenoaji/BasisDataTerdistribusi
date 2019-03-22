@@ -19,24 +19,6 @@
  
  Untuk membuat range partisi, jalankan query berikut pada service :
  
- Case table Userlogs
- ```
- CREATE TABLE userslogs_range (
-    username VARCHAR(20) NOT NULL,
-    logdata BLOB NOT NULL,
-    created DATETIME NOT NULL,
-    PRIMARY KEY(username, created)
-)
-PARTITION BY RANGE( YEAR(created) )(
-    PARTITION from_2013_or_less VALUES LESS THAN (2014),
-    PARTITION from_2014 VALUES LESS THAN (2015),
-    PARTITION from_2015 VALUES LESS THAN (2016),
-    PARTITION from_2016_and_up VALUES LESS THAN MAXVALUE);
-
- ```
- 
- Case Rc1
- 
  ```
  CREATE TABLE rc1_range (
     a INT,
