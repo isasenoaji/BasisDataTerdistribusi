@@ -11,6 +11,7 @@
    - [Explain](#explain)
    - [Query dan Running Time](#query-dan-running-time)
    - [Delete dan Running Time](#delete-dan-running-time)
+   - [Conclusion](#conclusion)
    
    
  ## Create Partisi
@@ -190,7 +191,7 @@ jalankan query
 SELECT SQL_NO_CACHE
     COUNT(*)
 FROM
-    vertabelo.measures
+    measures
 WHERE
     measure_timestamp >= '2016-01-01'
         AND DAYOFWEEK(measure_timestamp) = 1;
@@ -198,7 +199,7 @@ WHERE
 SELECT SQL_NO_CACHE
     COUNT(*)
 FROM
-    vertabelo.partitioned_measures
+    partitioned_measures
 WHERE
     measure_timestamp >= '2016-01-01'
         AND DAYOFWEEK(measure_timestamp) = 1;
@@ -245,7 +246,7 @@ DELETE
 FROM measures
 WHERE  measure_timestamp < '2016-01-01';
 
-ALTER TABLE vertabelo.partitioned_measures DROP PARTITION prev_year_logs ;
+ALTER TABLE partitioned_measures DROP PARTITION prev_year_logs ;
 ```
 
 Lihat perbandingan hasil akhirnya  berikut ini :
