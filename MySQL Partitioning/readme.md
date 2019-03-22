@@ -169,7 +169,7 @@ explain select * from rc1_key;
 # 2. Typical Use Case : Time Series Data
 
 ## Explain
-Import data dahulu file disini
+Import data dahulu file <a href="https://drive.google.com/open?id=0B2Ksz9hP3LtXRUppZHdhT1pBaWM">disini</a> ke server anda
 
 jalankan query 
 
