@@ -31,7 +31,7 @@ PARTITION BY RANGE COLUMNS(a, b) (
 
 ```
 
-<img src="/MySQL Partitioning/Screenshot 2/sukses create range.jpg"> 
+<img src="/MySQL Partitioning/Screenshot 2/range sukses.png"> 
 
 Insert data dengan query :
 
@@ -54,6 +54,8 @@ explain select * from rc1_range;
 ```
 
 
+<img src="/MySQL Partitioning/Screenshot 2/range explain.png"> 
+
 ## List Partition
 
 Untuk membuat gunakan query berikut :
@@ -71,6 +73,10 @@ PARTITION BY LIST COLUMNS(a,b) (
 );
 ```
 
+
+<img src="/MySQL Partitioning/Screenshot 2/list sukses.png"> 
+
+
 Insert data dengan query berikut :
 
 ```
@@ -87,6 +93,9 @@ Cek dengan query :
 explain select * from rc1_list;
 ```
 
+
+<img src="/MySQL Partitioning/Screenshot 2/list explain.png"> 
+
 ## Hash Partition
 
 Untuk membuat gunakan query :
@@ -100,6 +109,8 @@ CREATE TABLE rc1_hash (
 PARTITION BY HASH (a)
 PARTITIONS 10;
 ```
+
+
 
 Insert data dengan query :
 
@@ -120,6 +131,7 @@ Cek dengan query :
 ```
 explain select * from rc1_hash;
 ```
+<img src="/MySQL Partitioning/Screenshot 2/hash explain.png"> 
 
 ## Key Partition
 
@@ -136,6 +148,7 @@ PARTITION BY KEY (a)
 PARTITIONS 10;
 ```
 
+<img src="/MySQL Partitioning/Screenshot 2/key sukses.png"> 
 Insert data dengan query :
 
 ```
@@ -150,11 +163,98 @@ Cek dengan query :
 explain select * from rc1_key;
 ```
 
+<img src="/MySQL Partitioning/Screenshot 2/key explain.png"> 
+
 
 # 2. Typical Use Case : Time Series Data
 
 ## Explain
+Import data dahulu file disini
+
+jalankan query 
+
+```
+explain select * from measures;
+explain select * from partitioned_measures;
+```
+
+<img src="/MySQL Partitioning/Screenshot 2/explain.png"> 
 
 ## Query dan Running Time
 
+Disini akan diuji running time pada query select antara non partisi dengan partisi
+
+jalankan query 
+
+```
+SELECT SQL_NO_CACHE
+    COUNT(*)
+FROM
+    vertabelo.measures
+WHERE
+    measure_timestamp >= '2016-01-01'
+        AND DAYOFWEEK(measure_timestamp) = 1;
+	
+SELECT SQL_NO_CACHE
+    COUNT(*)
+FROM
+    vertabelo.partitioned_measures
+WHERE
+    measure_timestamp >= '2016-01-01'
+        AND DAYOFWEEK(measure_timestamp) = 1;
+```
+
+Outpun lokal penulis :
+
+<img src="/MySQL Partitioning/Screenshot 2/select benchmark after.png">
+
+Mungkin hasil perbedaan running time tidak jauh berbeda, namun jika kita hapus index pada ```measure_time``` maka akan nampak jelas seperti berikut :
+
+Jalankan query berikut untuk menghapus index :
+
+```
+ALTER TABLE `measures` 
+DROP INDEX `measure_timestamp` ;
+ 
+ALTER TABLE `partitioned_measures` 
+DROP INDEX `measure_timestamp` ;
+```
+<img src="/MySQL Partitioning/Screenshot 2/remove index benchmark.png">
+berikut perbedaannya :
+
+<img src="/MySQL Partitioning/Screenshot 2/select benchmark before.png">
+
 ## Delete dan Running Time
+
+pada section ini, akan diuji perbedaan running time dalam penghapusan besar data 
+
+tambah dahulu index yang sudah dihapus :
+
+```
+ALTER TABLE `measures` 
+ADD INDEX `index1` (`measure_timestamp` ASC);
+
+ALTER TABLE `partitioned_measures` 
+ADD INDEX `index1` (`measure_timestamp` ASC);
+```
+
+jalankan query delete :
+
+```
+DELETE
+FROM measures
+WHERE  measure_timestamp < '2016-01-01';
+
+ALTER TABLE vertabelo.partitioned_measures DROP PARTITION prev_year_logs ;
+```
+
+Lihat perbandingan hasil akhirnya  berikut ini :
+
+<img src="/MySQL Partitioning/Screenshot 2/delete benchmark.png">
+
+## Conclusion
+
+Dari hasil uji query antara partisi dan non partisi, sangat jauh sekali perbandingannya. jelas bahwa partisi lebih efisien.
+Ingat! ketika membuat partisi pastikan semua aturan partisi terpenuhi.
+
+Trimakasih
