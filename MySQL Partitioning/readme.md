@@ -28,7 +28,10 @@ PARTITION BY RANGE COLUMNS(a, b) (
     PARTITION p0 VALUES LESS THAN (5, 12),
     PARTITION p3 VALUES LESS THAN (MAXVALUE, MAXVALUE)
 );
+
 ```
+
+<img src="/MySQL Partitioning/Screenshot 2/sukses create range.jpg"> 
 
 Insert data dengan query :
 
