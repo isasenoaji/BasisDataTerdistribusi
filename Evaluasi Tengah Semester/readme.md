@@ -2,7 +2,7 @@
 
 ## Daftar Isi :
 
-1. [Instalasi Cluster](#1.-instalasi-cluster)
+1. [Instalasi Cluster](#instalasi-cluster)
 2. Instalasi Wordpress
    - Instalasi Apache2
    - Instalasi Php
