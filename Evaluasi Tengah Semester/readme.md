@@ -46,12 +46,15 @@ service1 > mysql -u root -p
 mysql > create database wordpress;
 ```
 
+<img src="/Evaluasi Tengah Semester/Screenshot 3/create table.png">
+
 Tambahkan akses pada user ```mysqlcluster``` agar bisa mengakses database wordpress dengan query :
 
 ```
 GRANT ALL PRIVILEGES on wordpress.* to 'mysqlcluster'@'%';
 FLUSH PRIVILEGES;
 ```
+<img src="/Evaluasi Tengah Semester/Screenshot 3/Grant akses.png">
 
 Note :
 
@@ -113,6 +116,13 @@ define( 'DB_HOST', '192.168.31.106:6033' );
 Buka browser, disini penulis menggunakan browser chrome dengan alamat 192.168.31.106/wordpress
 
 Isi data-data yang ada sesuai petunjuk.
+<img src="/Evaluasi Tengah Semester/Screenshot 3/wordpress sukses instal.png">
+
+Saat penulis membuat tutorial ini, ```data node``` yang aktif/sedang menjadi utama adalah ```data1```. Buat sebuah post baru.
+
+<img src="/Evaluasi Tengah Semester/Screenshot 3/wordpress new post.png">
+
+
 ## 3. Uji Coba Fail Over
 
 ## 4. Respond Time Test using JMeter
