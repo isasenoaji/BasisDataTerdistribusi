@@ -155,7 +155,7 @@ Kesimpulan dari test diatas adalah ketika salah satu node data dimatikan, maka s
 
 ## 4. Respond Time Test using JMeter
 
-JMeter adalah sebuah software open source yang dapat digunakan secara gratis untuk berbagai pengukuran, salah satunya pengukuran respond time method GET pada http. Pada uji coba respond time/load time pada wordpress sekaligus basis data yang sudah dibuat sebelumnya. Aplikasi dapat didownload <a href="https://jmeter.apache.org/download_jmeter.cgi>disini</a>.
+JMeter adalah sebuah software open source yang dapat digunakan secara gratis untuk berbagai pengukuran, salah satunya pengukuran respond time method GET pada http. Pada uji coba respond time/load time pada wordpress sekaligus basis data yang sudah dibuat sebelumnya. Aplikasi dapat didownload <a href="https://jmeter.apache.org/download_jmeter.cgi">disini</a>.
 Pada saat pengujian ini, ```data node``` yang sedang aktif/primer adalah ```data3```.
   
 Cara Testing Menggunakan JMeter :
