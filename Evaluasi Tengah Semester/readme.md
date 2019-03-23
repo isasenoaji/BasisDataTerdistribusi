@@ -125,4 +125,28 @@ Saat penulis membuat tutorial ini, ```data node``` yang aktif/sedang menjadi uta
 
 ## 3. Uji Coba Fail Over
 
+Untuk pengujian apakah Cluster mampu menghadapi/mengatasi fail over, maka pada case kali ini karna ```node data``` utama adalah ```data1``` sesuai gambar dibawah akan dimatikan lalu diuji akses ke wordpress kembali.
+
+<img src="/Evaluasi Tengah Semester/Screenshot 3/manager status before 1.png">
+
+Matikan layanan pada ``` data1``` dengan perintah :
+
+```
+sudo systemctl stop ndbd
+sudo pkill -f ndbd
+```
+<img src="/Evaluasi Tengah Semester/Screenshot 3/data1 matikan.png">
+
+Akses/refresh kembali wordpress, bila berhasil maka akan tidak akan error dan akan memuat seperti biasanya.
+
+<img src="/Evaluasi Tengah Semester/Screenshot 3/wordpress new post.png">
+
+Status pada manager :
+
+<img src="/Evaluasi Tengah Semester/Screenshot 3/manager status after 1.png">
+
+### Conclusion
+
+Kesimpulan dari test diatas adalah ketika salah satu node data dimatikan, maka secara otomatis data node lainnya akan menggantikan dengan cepat tanpa perintah khusus, sehingga terbukti cluster memiliki sifat high availability. Untuk pengukuran waktu respond akan dibahas pada section selanjutnya menggunakan aplikasi bernama JMeter.
+
 ## 4. Respond Time Test using JMeter
