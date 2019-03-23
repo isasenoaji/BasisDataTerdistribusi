@@ -170,7 +170,7 @@ Cara Testing Menggunakan JMeter :
    - Pilih Add -> sampler -> HTTP Request
    <img src="/Evaluasi Tengah Semester/Screenshot 3/jmeter step 3.png">
    - Config request HTTP sesuai gambar berikut :
-   <img src="/Evaluasi Tengah Semester/Screenshot 3/jmeter step 4.png">
+   <img src="/Evaluasi Tengah Semester/Screenshot 3/jmeter step 4 .png">
 3. Buat report hasil respond (table)
    - Klik kanan nama thread grup
    - Pilih Add -> Listener -> View Result in Table
@@ -180,12 +180,17 @@ Cara Testing Menggunakan JMeter :
    - Pilih Add -> Listener -> Respond Time Graph
    <img src="/Evaluasi Tengah Semester/Screenshot 3/jmeter step 6.png">
 5. Jalankan dengan menekan tombol F5 atau segitiga hijau diatas navigasi bar.
-   - ketika program sedang melakukan request/load secara terus menerus, matikan dan kill layanan pada ```data3```. Maka terlihat ada jeda sedikit perbedaan pada request time
+   - ketika program sedang melakukan request/load secara terus menerus, matikan dan kill layanan pada ```data3```. Maka terlihat ada jeda sedikit perbedaan pada request time (dikotakan warna merah)
    <img src="/Evaluasi Tengah Semester/Screenshot 3/data3 matikan jmeter.png">
    
    Status layanan pada manager :
    <img src="/Evaluasi Tengah Semester/Screenshot 3/data3 mati sukses jmeter.png">
    
-   Pada report grafik juga akan tampil perbedaan jeda request/load time nya
+   Pada report grafik juga akan tampil perbedaan jeda request/load time nya(dikotakan warna kuning)
    
    <img src="/Evaluasi Tengah Semester/Screenshot 3/data3 mati jmeter grafik.png">
+   
+   
+### Conclusion
+
+Pada uji coba request/load time menggunakan JMeter, menunjukan bahwa layanan akan tetap aktif dan normal akan tetapi butuh sedikit waktu untuk mengalihkan layanan data yang mati. 
