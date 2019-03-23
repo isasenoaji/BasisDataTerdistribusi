@@ -55,7 +55,7 @@ FLUSH PRIVILEGES;
 
 Note :
 
-Karena MySQL Cluster hanya support engine NDBCluster, maka kita perlu set default engine pada semua service pada /etc/my.cnf dengan format diletakan dibawah bind-address :
+Karena MySQL Cluster hanya support engine NDBCluster, maka kita perlu set default engine pada semua service pada /etc/my.cnf dengan format diletakan dibawah ```bind-address``` :
 
 ```
 default-storage-engine=ndbcluster
@@ -67,9 +67,52 @@ restart service mysql
 sudo systemctl restart mysql
 ```
 
+Kembali ke console ProxySQL, ganti direktori saat ini ke /var/www/html
 
+```
+cd /var/www/html
+```
 
+Untar hasil file wordpress yang sudah  didownload dengan perintah :
 
+```
+sudo tar -xvf wordpress-5.1.1.tar.gz
+```
+
+Setelah proses Untar telah selesai, ganti nama file ```wp-config-sample.php``` menjadi ```wp-config.php```
+
+```
+sudo mv wp-config-sample.php wp-config.php
+```
+
+edit konfigurasi database pada file ```wp-config.php``` dengan perintah :
+
+```
+sudo nano wp-config.php
+```
+
+ubah menjadi seperti berikut :
+
+```
+***
+/** The name of the database for WordPress */
+define( 'DB_NAME', 'wordpress' );
+
+/** MySQL database username */
+define( 'DB_USER', 'mysqlcluster' );
+
+/** MySQL database password */
+define( 'DB_PASSWORD', 'vagrant' );
+
+/** MySQL hostname */
+define( 'DB_HOST', '192.168.31.106:6033' );
+
+***
+```
+
+Buka browser, disini penulis menggunakan browser chrome dengan alamat 192.168.31.106/wordpress
+
+Isi data-data yang ada sesuai petunjuk.
 ## 3. Uji Coba Fail Over
 
 ## 4. Respond Time Test using JMeter
