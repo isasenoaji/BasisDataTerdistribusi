@@ -3,8 +3,6 @@
 # Daftar Isi
 1. [Register](#1-register)
 2. [Instalasi](#2-instalasi)
-   - [Mongo Shell](#--mongo-shell)
-   - [Mongo Compass](#--mongo-compass)
 3. [Import data](#3-import-data)
 4. [Query Test](#4-query-test)
 
@@ -34,6 +32,7 @@ Untuk instalasi Mongo Shell bisa download <a href="https://downloads.mongodb.org
 Untuk instalasi MongoDB Compass bisa download <a href="https://www.mongodb.com/download-center/community">disini</a>.
 
 **note**
+
 Pastikan untuk menambah ```PATH``` pada environment komputer/laptop anda yang diarahkan pada direktori ```{path Anda menginstal Mongo Shell}\bin``` dan ```{path Anda menginstal MongoDB Compass}\bin```
 
 ## 3. Import Data
