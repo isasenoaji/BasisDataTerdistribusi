@@ -41,10 +41,14 @@ Pastikan untuk menambah ```PATH``` pada environment komputer/laptop anda yang di
 Dalam case ini, penulis menggunakan dataset yang sudah disediakan pada folder <a href="">resources</a>.
 
 Sebelum melakukan import data ke cluster, kita perlu Address dimana primer berjalan. Untuk mengetahui Address nya, buka MongoDB Cluster Anda melalui browser, klik nama Cluster lalu akan tampil node yang ada.
+
 <img src="/MongoDB/resources/import1.png">
+
 <img src="/MongoDB/resources/import2.png">
 
 Klik pada primary node dan copy address yang berada pada judul grafik.
+
+
 <img src="/MongoDB/resources/import3.png">
 
 Buka CMD Anda, disini Penulis menggunakan CMDER jalankan command :
