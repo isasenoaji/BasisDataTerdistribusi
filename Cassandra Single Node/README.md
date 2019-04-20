@@ -63,6 +63,22 @@ Pada case kali ini, penulis menggunakan dataset berjudul "Black Friday" yang bis
 
 - Penjelasan :
 
+Dataset berikut merupakan 550 k observasi tentang 'black friday' disebuah toko retail, yang mengandung berbagai perbedaan variabel antara numerik atau sebuah kategori serta mengandung missing value alias null value.
+
+Coloumn :
+User_ID -> ID User
+Product_ID -> ID Product
+Gender Boolean -> Jenis Kelamin (Male/Female)
+Age -> Usia customer
+OccupationId -> Okupasi setiap customer
+City_Category 
+Stay_In_Current_City_Years
+Marital_Status
+Product_Category_1
+Product_Category_2
+Product_Category_3
+Purchase -> besaran pembelian dalam dollar
+
 
 
 ## 5. Import Dataset
