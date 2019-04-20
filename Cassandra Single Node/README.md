@@ -5,6 +5,10 @@
 1. [Definisi dan Perbedaan](#1-definisi-dan-perbedaan)
 2. [Arsitektur Server](#2-arsitektur-server)
 3. [Instalasi](#3-instalasi)
+   - Instal Oracle Java Virtual Machine
+   - Instal Cassandra
+   - Troubleshoot dan Starting Cassandra
+   - Koneksi ke Cassandra
 4. [Dataset dan Penjelasan](#4-dataset-dan-penjelasan)
 5. [Import Dataset](#5-import-dataset)
 6. [CRUD](#6-crud)
@@ -36,11 +40,30 @@ Karena Cassandra termasuk dalam kategori NoSql, maka dalam perbedaan dibawah ini
 | 4. | Penekanan/Sifat | Atomicity, Consistency, Isolation and Durability (ACID) | Consistency, Availability and Partition (CAP) |
 | 5.| Lisence | Komersial | Open Source |
 
+
+
 ## 2. Arsitektur Server
+
+Arsitektur yang digunakan penulis untuk membuat Data Center Cassandra Single Node adalah berikut :
+
+| No | Hostname | IP | Keterangan |
+|----|----------|----|------------|
+| 1. | Node | 192.168.11.100 | Node |
+
+
+- Kenapa hanya menggunakan 1 node?
+
+Dalam cassandra single node, datacenter dan node menjadi satu kesatuan.
 
 ## 3. Instalasi
 
 ## 4. Dataset dan Penjelasan
+
+Pada case kali ini, penulis menggunakan dataset berjudul "Black Friday" yang bisa didonwload pada link<a href="https://www.kaggle.com/mehdidag/black-friday/version/1"> berikut</a>.
+
+- Penjelasan :
+
+
 
 ## 5. Import Dataset
 
