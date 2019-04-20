@@ -5,10 +5,10 @@
 1. [Definisi dan Perbedaan](#1-definisi-dan-perbedaan)
 2. [Arsitektur Server](#2-arsitektur-server)
 3. [Instalasi](#3-instalasi)
-   - Instal Oracle Java Virtual Machine
-   - Instal Cassandra
-   - Troubleshoot dan Starting Cassandra
-   - Koneksi ke Cassandra
+   - [Instal Oracle Java Virtual Machine](#--instal-oracle-java-virtual-machine)
+   - [Instal Cassandra](#--instal-cassandra)
+   - [Troubleshoot dan Starting Cassandra](#--troubleshoot-dan-starting-cassandra)
+   - [Koneksi ke Cassandra](#--koneksi-ke-cassandra)
 4. [Dataset dan Penjelasan](#4-dataset-dan-penjelasan)
 5. [Import Dataset](#5-import-dataset)
 6. [CRUD](#6-crud)
@@ -57,6 +57,15 @@ Dalam cassandra single node, datacenter dan node menjadi satu kesatuan.
 
 ## 3. Instalasi
 
+###   - Instal Oracle Java Virtual Machine
+
+###   - Instal Cassandra
+
+###   - Troubleshoot dan Starting Cassandra
+
+###   - Koneksi ke Cassandra
+
+
 ## 4. Dataset dan Penjelasan
 
 Pada case kali ini, penulis menggunakan dataset berjudul "Black Friday" yang bisa didonwload pada link<a href="https://www.kaggle.com/mehdidag/black-friday/version/1"> berikut</a>.
@@ -66,18 +75,18 @@ Pada case kali ini, penulis menggunakan dataset berjudul "Black Friday" yang bis
 Dataset berikut merupakan 550 k observasi tentang 'black friday' disebuah toko retail, yang mengandung berbagai perbedaan variabel antara numerik atau sebuah kategori serta mengandung missing value alias null value.
 
 Coloumn :
-User_ID -> ID User
-Product_ID -> ID Product
-Gender Boolean -> Jenis Kelamin (Male/Female)
-Age -> Usia customer
-OccupationId -> Okupasi setiap customer
-City_Category 
-Stay_In_Current_City_Years
-Marital_Status
-Product_Category_1
-Product_Category_2
-Product_Category_3
-Purchase -> besaran pembelian dalam dollar
+1. User_ID -> ID User
+2. Product_ID -> ID Product
+3. Gender Boolean -> Jenis Kelamin (Male/Female)
+4. Age -> Usia customer
+5. OccupationId -> Okupasi setiap customer
+6. City_Category 
+7. Stay_In_Current_City_Years
+8. Marital_Status
+9. Product_Category_1
+10. Product_Category_2
+11. Product_Category_3
+12. Purchase -> besaran pembelian dalam dollar
 
 
 
