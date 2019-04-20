@@ -74,19 +74,20 @@ Pada case kali ini, penulis menggunakan dataset berjudul "Black Friday" yang bis
 
 Dataset berikut merupakan 550 k observasi tentang 'black friday' disebuah toko retail, yang mengandung berbagai perbedaan variabel antara numerik atau sebuah kategori serta mengandung missing value alias null value.
 
-Coloumn :
-1. User_ID -> ID User
-2. Product_ID -> ID Product
-3. Gender Boolean -> Jenis Kelamin (Male/Female)
-4. Age -> Usia customer
-5. OccupationId -> Okupasi setiap customer
-6. City_Category 
-7. Stay_In_Current_City_Years
-8. Marital_Status
-9. Product_Category_1
-10. Product_Category_2
-11. Product_Category_3
-12. Purchase -> besaran pembelian dalam dollar
+| No | Coloumn | Keterangan |
+|----|---------|--------|
+| 1. | User_ID | ID User |
+| 2. |  Product_ID | ID Product |
+| 3. | Gender (Boolean) | Jenis Kelamin (Male/Female)|
+| 4. | Age | Usia customer |
+| 5. | OccupationId | Okupasi setiap customer|
+| 6. | City_Category | - |
+| 7. | Stay_In_Current_City_Years | - |
+| 8. | Marital_Status (Boolean) | - |
+| 9. | Product_Category_1 | - |
+| 10. | Product_Category_2 |- |
+| 11. | Product_Category_3 |- |
+| 12. | Purchase | besaran pembelian dalam dollar |
 
 
 
