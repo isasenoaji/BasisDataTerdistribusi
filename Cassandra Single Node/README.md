@@ -173,7 +173,7 @@ sudo service cassandra status
 
 Bila sukses berjalan, maka akan tampil sebagai berikut :
 
-<img src="/Cassandra Single Node/Screenshot/cassandra service.png">
+<img src="/Cassandra Single Node/Screenshot/cassandra service.PNG">
 
 ###   - Koneksi ke Cassandra
 
@@ -185,7 +185,7 @@ sudo nodetool status
 
 Bila berhasil akan tampil seperti berikut :
 
-<img src="/Cassandra Single Node/Screenshot/node tool.png">
+<img src="/Cassandra Single Node/Screenshot/node tool.PNG">
 
 untuk konek yang sesungguhnya gunakan command :
 
@@ -195,7 +195,7 @@ cqlsh
 
 akan tampil seperti berikut :
 
-<img src="/Cassandra Single Node/Screenshot/test.png">
+<img src="/Cassandra Single Node/Screenshot/test.PNG">
 
 
 ## 4. Dataset dan Penjelasan
