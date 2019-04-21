@@ -1,5 +1,7 @@
 # Cassandra Single Node Instalation with CRUD
 
+Author : Muhammad Isa Senoaji - 05111640000078
+
 ## Table of Content
 
 1. [Definisi dan Perbedaan](#1-definisi-dan-perbedaan)
@@ -12,6 +14,7 @@
 4. [Dataset dan Penjelasan](#4-dataset-dan-penjelasan)
 5. [Import Dataset](#5-import-dataset)
 6. [CRUD](#6-crud)
+7. [Kesimpulan](#7-kesimpulan)
 
 ## 1. Definisi dan Perbedaan
 
@@ -225,4 +228,47 @@ Dataset berikut merupakan 550 k observasi tentang 'black friday' disebuah toko r
 
 ## 5. Import Dataset
 
+Buat keyspace terlebih dahulu, keyspace ini mirip dengan database pada MySQL. Untuk membuat, jalankan :
+
+```
+CREATE KEYSPACE blackfriday
+WITH replication = {
+   'class':'NetworkTopologyStrategy',
+   'datacenter1': 1 
+};
+
+blackfriday merupakan nama keyspace
+class NetworkTopologyStrategy bisa diganti dengan class yang di support oleh cassandra
+```
+
+<img src="/Cassandra Single Node/Screenshot/keyspace.PNG">
+
+Gunakan Keyspace tersebut dengan command :
+
+```
+use blackfriday;
+```
+<img src="/Cassandra Single Node/Screenshot/usse.PNG">
+
+Buat Tabel yang akan menampung hasil import dataset nantinya dengan command :
+
+```
+create table observation(User_ID int, Product_ID text, Gender boolean, Age text, Occupation int, City_Category text, Stay_In_Current_City_Years text, Marital_Status int, Product_Category_1 int, Product_Category_2 int, Product_Category_3 int, Purchase int, PRIMARY KEY(User_ID)); 
+```
+<img src="/Cassandra Single Node/Screenshot/create table.PNG">
+
+Import data dengan command :
+
+```
+COPY observation(User_ID, Product_ID , Gender , Age , Occupation , City_Category , Stay_In_Current_City_Years , Marital_Status , Product_Category_1 , Product_Category_2 , Product_Category_3 , Purchase) FROM '/home/vagrant/BlackFriday.csv' WITH HEADER = TRUE;
+```
+
+Jika sukses akan keluar output berikut :
+
+<img src="/Cassandra Single Node/Screenshot/import.PNG">
+
+
 ## 6. CRUD
+
+
+## 7. Kesimpulan
