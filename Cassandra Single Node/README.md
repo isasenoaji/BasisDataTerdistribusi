@@ -270,5 +270,56 @@ Jika sukses akan keluar output berikut :
 
 ## 6. CRUD
 
+- Insert data 
+
+Untuk insert data, penulis akan mencoba memasukan satu contoh data dengan query :
+
+```
+INSERT INTO observation(User_ID, Product_ID , Gender , Age , Occupation , City_Category , Stay_In_Current_City_Years , Marital_Status , Product_Category_1 , Product_Category_2 , Product_Category_3 , Purchase)
+VALUE (354313, '313354', TRUE, '21', 34, 'A', '3', 1, 5, 11, 5,30000);
+```
+
+<img src="/Cassandra Single Node/Screenshot/insert.PNG">
+
+- Read Data
+
+Untuk read data gunakan query ;
+
+```
+select * from observation where User_ID = 354313 ;
+``` 
+
+hasil :
+
+<img src="/Cassandra Single Node/Screenshot/read.PNG">
+
+- Update Data
+
+update data dengan query :
+
+```
+update observation set purchase = 50000 where User_ID = 354313;
+
+```
+
+Hasil :
+
+<img src="/Cassandra Single Node/Screenshot/update.PNG">
+
+
+- Delete Data
+
+Delete data dengan query :
+
+```
+DELETE FROM observation WHERE User_ID = 354313;
+```
+
+Hasil :
+
+<img src="/Cassandra Single Node/Screenshot/delete.PNG">
+
 
 ## 7. Kesimpulan
+
+Cassandra merupakan salah satu database NoSQL yang penggunaannya menggunakan query Cassandra Query Language (clq) yang mana dalam pemrosesan data sangat cepat, dibuktikan dengan saat proses import data sebesar 8 MB hanya membutuhkan waktu 30 detik saja, dibanding dengan SQL Relational yang memakan waktu sekitar 8 menit. dan juga query yang digunakan mirip seperti pada SQL RDBMS sehingga mudah digunakan.
