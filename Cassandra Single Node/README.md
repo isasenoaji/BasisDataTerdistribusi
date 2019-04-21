@@ -59,11 +59,143 @@ Dalam cassandra single node, datacenter dan node menjadi satu kesatuan.
 
 ###   - Instal Oracle Java Virtual Machine
 
+Cassandra membutuhkan Oracle Java Virtual Machine (JRE) untuk dapat diinstal. Untuk menginstall :
+
+Add Personal Package Archive (PPA), command :
+
+```
+sudo add-apt-repository ppa:webupd8team/java
+```
+
+update package
+
+```
+sudo apt-get update
+```
+
+Install package 
+
+```
+sudo apt-get install oracle-java8-set-default
+```
+
+Bila terjadi error, lakukan langkah berikut :
+
+1. Tambahkan baris di bawah ini ke /etc/apt/sources.list:
+
+```
+deb http://debian.opennms.org/ stable main
+```
+
+2. Instal GPG key repositori
+
+```
+wget -O - http://debian.opennms.org/OPENNMS-GPG-KEY | sudo apt-key add -
+```
+
+3. Update package index
+
+```
+sudo apt-get update
+```
+
+4. Instal oracle-java8-installer deb package:
+
+```
+sudo apt-get install oracle-java8-set-default
+```
+
+setelah itu, verifikasi apakah sudah terinstal atau belum, dengan command :
+
+```
+java -version
+```
+
+bila sudah, akan tampil seperti berikut :
+
+<img src="/Cassandra Single Node/Screenshot/java.png">
+
+
 ###   - Instal Cassandra
+
+Instalasi Cassandra menggunakan versi 2.2, maka gunakan command :
+
+```
+echo "deb http://www.apache.org/dist/cassandra/debian 22x main" | sudo tee -a /etc/apt/sources.list.d/cassandra.sources.list
+
+Note : ganti 22x dengan versi yang anda inginkan
+```
+
+Tambah repository dengan command :
+
+```
+echo "deb-src http://www.apache.org/dist/cassandra/debian 22x main" | sudo tee -a /etc/apt/sources.list.d/cassandra.sources.list
+```
+
+untuk mencegah update warning signature :
+
+```
+sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys A278B781FE4B2BDA
+gpg --keyserver pgp.mit.edu --recv-keys F758CE318D77295D
+gpg --export --armor F758CE318D77295D | sudo apt-key add -
+
+gpg --keyserver pgp.mit.edu --recv-keys 2B5C1B00
+gpg --export --armor 2B5C1B00 | sudo apt-key add -
+
+gpg --keyserver pgp.mit.edu --recv-keys 0353B12C
+gpg --export --armor 0353B12C | sudo apt-key add -
+```
+
+akan muncul seperti berikut :
+
+<img src="/Cassandra Single Node/Screenshot/key pgp.png">
+
+Update
+
+```
+sudo apt-get update
+```
+
+Install Cassandra
+
+```
+sudo apt-get install cassandra
+```
+
 
 ###   - Troubleshoot dan Starting Cassandra
 
+Untuk mengecek apakah sudah berjalan atau belum, gunakan commad :
+
+```
+sudo service cassandra status
+```
+
+Bila sukses berjalan, maka akan tampil sebagai berikut :
+
+<img src="/Cassandra Single Node/Screenshot/cassandra service.png">
+
 ###   - Koneksi ke Cassandra
+
+Ketika sudah sukses menjalankan Cassandra, maka untuk menghubungkan/kontrol penggunaan, gunakan command untuk cek status lagi nih :
+
+```
+sudo nodetool status
+```
+
+Bila berhasil akan tampil seperti berikut :
+
+<img src="/Cassandra Single Node/Screenshot/node tool.png">
+
+untuk konek yang sesungguhnya gunakan command :
+
+```
+cqlsh
+```
+
+akan tampil seperti berikut :
+
+<img src="/Cassandra Single Node/Screenshot/test.png">
 
 
 ## 4. Dataset dan Penjelasan
