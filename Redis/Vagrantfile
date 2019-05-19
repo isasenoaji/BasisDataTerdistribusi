@@ -1,0 +1,63 @@
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
+
+
+Vagrant.configure("2") do |config|
+  config.vm.box = "bento/ubuntu-16.0.4"
+
+  config.vm.define "master1" do |master1|
+    # Box Settings
+    master1.vm.box = "bento/ubuntu-16.04"
+    master1.vm.hostname = "master1"
+
+    # Provider Settings
+    master1.vm.provider "virtualbox" do |vb|
+      # Display the VirtualBox GUI when booting the machine
+      vb.gui = false
+      vb.name = "master1"
+      # Customize the amount of memory on the VM:
+      vb.memory = "1516"
+    end
+    master1.vm.network "private_network", ip: "192.168.31.100"
+    # master1.vm.provision "shell", path: "provision/bootstrap.sh", privileged: false
+    #master1.vm.provision "shell", path: "provision/bootstrap-master1.sh", privileged: false
+  end
+
+  config.vm.define "rslave1" do |rslave1|
+    # Box Settings
+    rslave1.vm.box = "bento/ubuntu-16.04"
+    rslave1.vm.hostname = "rslave1"
+
+    # Provider Settings
+    rslave1.vm.provider "virtualbox" do |vb|
+      # Display the VirtualBox GUI when booting the machine
+      vb.gui = false
+      vb.name = "rslave1"
+      # Customize the amount of memory on the VM:
+      vb.memory = "1024"
+    end
+    rslave1.vm.network "private_network", ip: "192.168.31.101"
+    # rslave1.vm.provision "shell", path: "provision/bootstrap.sh", privileged: false
+    #rslave1.vm.provision "shell", path: "provision/bootstrap-datanode.sh", privileged: false
+  end
+
+
+  config.vm.define "rslave2" do |rslave2|
+    # Box Settings
+    rslave2.vm.box = "bento/ubuntu-16.04"
+    rslave2.vm.hostname = "rslave2"
+
+    # Provider Settings
+    rslave2.vm.provider "virtualbox" do |vb|
+      # Display the VirtualBox GUI when booting the machine
+      vb.gui = false
+      vb.name = "rslave2"
+      # Customize the amount of memory on the VM:
+      vb.memory = "1024"
+    end
+    rslave2.vm.network "private_network", ip: "192.168.31.102"
+    # rslave2.vm.provision "shell", path: "provision/bootstrap.sh", privileged: false
+    #rslave2.vm.provision "shell", path: "provision/bootstrap-datanode.sh", privileged: false
+  end
+
+end
