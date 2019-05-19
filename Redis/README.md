@@ -114,6 +114,7 @@ Untuk mengecek info/status Redis-Cluster, masuk ke redis-cli dan masukan info re
 <img src="/Redis/screenshot/master info.PNG">
 
 -rslave1
+
 <img src="/Redis/screenshot/slave1 info.PNG">
 
 -rslave2
@@ -137,9 +138,11 @@ get [namakey]
 ```
 
 pada rslave1
+
 <img src="/Redis/screenshot/getslave1.PNG">
 
 pada rslave2
+
 <img src="/Redis/screenshot/getslave2.PNG">
 
 mudah bukan ?!
@@ -156,7 +159,7 @@ atau
 redis-cli -p 6379 DEBUG SEGFAULT 
 ```
 
-maka bila kita cek pada status di slave 1 / 2 maka salah satunya akan berganti menjadi master pengganti seperti berikut.
+maka bila kita cek pada status di slave 1 / 2 maka salah satunya akan berganti menjadi master pengganti seperti berikut.(dalam kasus ini slave1 dipilih menjadi master penggati)
 
 <img src="/Redis/screenshot/failover.PNG">
 <img src="/Redis/screenshot/failover2.PNG">
