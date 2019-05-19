@@ -11,9 +11,9 @@ Arsitektur yang digunakan menggunakan 1 master dan 2 slave sebagai berikut :
 
 | No | Nama | Hostname | IP |
 |---|------|-------|----|
-|1.| Master | Master1 | 192.168.33.100 |
-|2.| Slave-1 | rSlave1 | 192.168.33.101 |
-|3.| Slave-2 | rSlave2 | 192.168.33.102 |
+|1.| Master | Master1 | 192.168.31.100 |
+|2.| Slave-1 | rSlave1 | 192.168.31.101 |
+|3.| Slave-2 | rSlave2 | 192.168.31.102 |
 
 ## 2. Instalasi
 
@@ -99,6 +99,33 @@ Untuk mengecek info/status Redis-Cluster, masuk ke redis-cli dan masukan info re
 
 -rslave2
 
+##### CRUD Basic Test
 
+untuk pengujian, cukup buat sebuah key-value pada master dengan query :
+
+```
+set [namakey] [value]
+```
+
+dan untuk melihat isinya, gunakan :
+
+```
+get [namakey]
+```
+
+mudah bukan ?!
 
 ## 4. Fail Over Test
+
+Untuk pengujian failover, matikan node master dengan cara :
+
+```
+kill -9 <process id>
+atau
+redis-cli -p 6379 DEBUG sleep 30
+atau
+redis-cli -p 6379 DEBUG SEGFAULT 
+```
+
+maka bila kita cek pada status di slave 1 / 2 maka salah satunya akan berganti menjadi master pengganti seperti berikut.
+
