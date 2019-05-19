@@ -38,8 +38,67 @@ sudo make install
 
 Setelah melakukan penginstalan dimasing-masing node pada langkah diatas, kita perlu melakukan konfigurasi pada masing2 node.
 
+terdapat 2 jenis file yang harus di konfigurasi, yaitu file redis.conf dan sentinel.conf. redis.conf berfungsi sebagai pengaturan utama redis sedangkan sentinel.conf berfungsi sebagai pengaturan sentinel/bila terjadi fail over.
+
+#### Konfigurasi Redis.conf
+##### Pada Master
+
+```
+protected-mode no
+port 6379
+logfile "/home/vagrant/redis-stable/redis.log"
+```
+
+##### Pada Kedua Slave
+
+```
+protected-mode no
+port 6379
+slaveof 192.168.31.100 6379
+logfile "/home/vagrant/redis-stable/redis.log"
+```
+
+#### Konfigurasi Sentinel.conf
+##### Pada Master dan Slave
+
+```
+protected-mode no
+logfile "/home/vagrant/redis-stable/sentinel.log"
+sentinel monitor mymaster 192.168.31.100 6379 2
+sentinel down-after-milliseconds mymaster 5000
+sentinel failover-timeout mymaster 10000
+```
+
+Catatan : 
+
+pastikan penulisan IP adalah Benar dikarenakan hal tersebut yang menjadi pemicu utama dan angka 2 menrupakan angka quorum pada election ketika terjadi fail over.
 
 
 ## 3. CRUD Test
+
+Untuk dapat menggunakan redis, kita perlu menjalankan redis-server yang berada pada folder redis-stable/src. ganti ke direktori tersebut dan jalankan perintah berikut pada masing2 node :
+
+```
+src/redis-server redis.conf &
+src/redis-server sentinel.conf --sentinel &
+```
+
+gunakan command berikut untuk mengecek apakan=h redis sudah berjalan atau belum :
+
+```
+ps -f | grep redis
+```
+
+akan tampil seperti berikut :
+
+Untuk mengecek info/status Redis-Cluster, masuk ke redis-cli dan masukan info replication :
+
+-Master
+
+-rslave1
+
+-rslave2
+
+
 
 ## 4. Fail Over Test
