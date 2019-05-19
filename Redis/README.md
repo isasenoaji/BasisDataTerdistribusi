@@ -84,24 +84,41 @@ Untuk dapat menggunakan redis, kita perlu menjalankan redis-server yang berada p
 src/redis-server redis.conf &
 src/redis-server sentinel.conf --sentinel &
 ```
+saat di cek pada redis.log nya akan muncul seperti berikut :
 
-gunakan command berikut untuk mengecek apakan=h redis sudah berjalan atau belum :
+pada master :
+
+<img src="/Redis/screenshot/master log.PNG">
+
+pada slave :
+
+<img src="/Redis/screenshot/slave log.PNG">
+
+gunakan command berikut untuk mengecek apakah redis sudah berjalan atau belum :
 
 ```
 ps -f | grep redis
 ```
 
-<img src="/Redis/screenshot/slave1 status.PNG">
-
 akan tampil seperti berikut :
+
+<img src="/Redis/screenshot/master status.PNG">
+<img src="/Redis/screenshot/slave1 status.PNG">
+<img src="/Redis/screenshot/slave2 status.PNG">
+
 
 Untuk mengecek info/status Redis-Cluster, masuk ke redis-cli dan masukan info replication :
 
 -Master
 
+<img src="/Redis/screenshot/master info.PNG">
+
 -rslave1
+<img src="/Redis/screenshot/slave1 info.PNG">
 
 -rslave2
+
+<img src="/Redis/screenshot/slave2 info.PNG">
 
 ##### CRUD Basic Test
 
@@ -111,11 +128,19 @@ untuk pengujian, cukup buat sebuah key-value pada master dengan query :
 set [namakey] [value]
 ```
 
+<img src="/Redis/screenshot/setkey.PNG">
+
 dan untuk melihat isinya, gunakan :
 
 ```
 get [namakey]
 ```
+
+pada rslave1
+<img src="/Redis/screenshot/getslave1.PNG">
+
+pada rslave2
+<img src="/Redis/screenshot/getslave2.PNG">
 
 mudah bukan ?!
 
@@ -132,4 +157,9 @@ redis-cli -p 6379 DEBUG SEGFAULT
 ```
 
 maka bila kita cek pada status di slave 1 / 2 maka salah satunya akan berganti menjadi master pengganti seperti berikut.
+
+<img src="/Redis/screenshot/failover.PNG">
+<img src="/Redis/screenshot/failover2.PNG">
+
+
 
