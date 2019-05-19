@@ -1,4 +1,6 @@
 # REDIS IMPLEMENTATION
+by Muhammad Isa Senoaji - 05111640000078
+
 
 ## Shorcut
    1. [Arsitektur](#1-arsitektur)
@@ -88,6 +90,8 @@ gunakan command berikut untuk mengecek apakan=h redis sudah berjalan atau belum 
 ```
 ps -f | grep redis
 ```
+
+<img src="/Redis/screenshot/slave1 status.PNG">
 
 akan tampil seperti berikut :
 
