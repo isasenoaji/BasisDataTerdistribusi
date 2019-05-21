@@ -29,9 +29,15 @@ Arsitektur yang digunakan adalah sebagai berikut :
 
 ## Instalasi MySQL Cluster
 
+Untuk instalasi MySQL Cluster, Anda dapat melihatnya di <a href="https://github.com/isasenoaji/BasisDataTerdistribusi">sini</a>
+
 ## Instalasi Wordpress
 
+Untuk instalasi Wordpress pada MySQL Cluster, Anda dapat melihatnya di <a href="https://github.com/isasenoaji/BasisDataTerdistribusi/tree/master/Evaluasi%20Tengah%20Semester">sini</a>
+
 ## Instalasi Redis
+
+Untuk instalasi Redis Cluster, Anda dapat melihatnya di <a href="https://github.com/isasenoaji/BasisDataTerdistribusi/tree/master/Redis">sini</a>
 
 ## Uji Coba
    
