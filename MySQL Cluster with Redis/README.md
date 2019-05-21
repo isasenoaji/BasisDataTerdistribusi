@@ -58,7 +58,7 @@ define( 'WP_REDIS_SERVERS', [
 
 Setelah itu, buka plugin yang telah di download dan instal tadi. dan pastikan list redis sudah muncul. Dan jika sudah muncul, aktifkan plugin maka akan tampil seperti berikut ini :
 
-<img src="\MySQL Cluster with Redis\screenshot\redis.PNG">
+<img src="/MySQL Cluster with Redis/screenshot/redis.PNG">
 
 ## 6. Uji Coba
    
