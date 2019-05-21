@@ -3,12 +3,12 @@
 Wordpress with MySQL CLuster Architecture and Redis Cluster
 
 ## Daftar Isi
-   - [Arsitektur](#arsitektur)
-   - [Instalasi MySQL Cluster](#instalasi-mysql-cluster)
-   - [Instalasi Wordpress](#instalasi-wordpress)
-   - [Instalasi Redis](#instalasi-redis)
-   - [Konfigurasi Redis](#konfigurasi-redis-pada-wp)
-   - [Uji Coba](#uji-coba)
+   - [Arsitektur](#1-arsitektur)
+   - [Instalasi MySQL Cluster](#2-instalasi-mysql-cluster)
+   - [Instalasi Wordpress](#3-instalasi-wordpress)
+   - [Instalasi Redis](#4-instalasi-redis)
+   - [Konfigurasi Redis](#5-konfigurasi-redis-pada-wp)
+   - [Uji Coba](#6-uji-coba)
    
 
 ## 1. Arsitektur
